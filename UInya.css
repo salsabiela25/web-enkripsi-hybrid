@@ -1,0 +1,247 @@
+/* ===============================
+   GLOBAL STYLE
+=================================*/
+
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #4f46e5;
+    --accent-soft: #60a5fa;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --border: rgba(15, 23, 42, 0.06);
+    --soft: #f7fafc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    background: linear-gradient(180deg, var(--bg), #eef2ff);
+    color: #0f172a;
+}
+
+
+/* ===============================
+   SIDEBAR
+=================================*/
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 26px;
+    background: linear-gradient(180deg, #0f172a, #1e3a8a);
+    color: #fff;
+    box-shadow: 4px 0 20px rgba(2, 6, 23, 0.12);
+}
+
+.sidebar h1 {
+    font-size: 20px;
+    margin: 0 0 6px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sidebar p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-align: center;
+}
+
+.sidebar .sidebar-section {
+    margin-top: 18px;
+}
+
+
+/* ===============================
+   MAIN CONTENT
+=================================*/
+
+.content {
+    margin-left: 300px;
+    padding: 28px;
+    max-width: 1200px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    margin-bottom: 20px;
+}
+
+.topcard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2,
+h3 {
+    color: var(--accent);
+    margin: 0 0 6px;
+}
+
+.small {
+    font-size: 13px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* ===============================
+   BUTTONS
+=================================*/
+
+.btn {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn.ghost {
+    background: white;
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ===============================
+   CANVAS PREVIEW
+=================================*/
+
+.grid-preview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+canvas {
+    border-radius: 10px;
+    width: 100%;
+    max-width: 256px;
+    height: auto;
+    aspect-ratio: 1/1;
+    background: var(--soft);
+    border: 1px solid #eef2ff;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* ===============================
+   INPUTS & TEXTAREA
+=================================*/
+
+input[type=file] {
+    margin-top: 10px;
+}
+
+input[type=password],
+textarea,
+input[type=text] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #e6eef8;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+textarea {
+    min-height: 90px;
+}
+
+
+/* ===============================
+   LOG TERMINAL
+=================================*/
+
+.log {
+    background: #fbfdff;
+    border-radius: 8px;
+    padding: 10px;
+    height: 150px;
+    overflow: auto;
+    border: 1px solid var(--border);
+    font-size: 13px;
+}
+
+
+/* ===============================
+   METRICS BOX
+=================================*/
+
+.metrics {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    border-left: 4px solid rgba(79, 70, 229, 0.06);
+}
+
+.metric-value {
+    font-weight: 700;
+    font-size: 16px;
+    color: #0f172a;
+}
+
+
+/* ===============================
+   UTILITIES
+=================================*/
+
+.hidden {
+    display: none;
+}
+
+.mt8 {
+    margin-top: 8px;
+}
+
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+
+@media (max-width: 1000px) {
+    .grid-preview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .content {
+        margin-left: 20px;
+        padding: 20px;
+    }
+    .sidebar {
+        display: none;
+    }
+}

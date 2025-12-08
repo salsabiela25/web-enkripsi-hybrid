@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hybrid AES-256 + RSA-2048 Encryptor</title>
+
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="UInya.css">
+</head>
+
+
+<body>
+    <aside class="sidebar">
+        <h1>Hybrid Encryptor</h1>
+        <p>AES-256-CBC + RSA-2048 (OAEP SHA-256)</p>
+
+
+        <div class="sidebar-section">
+            <button id="btnGenerateKeys" class="btn">Buat Pasangan Kunci RSA</button>
+            <div class="small muted mt8">
+                Setelah dibuat, Anda dapat ekspor Public & Private Key.
+            </div>
+        </div>
+
+
+        <div class="sidebar-section">
+            <button id="btnExportPublic" class="btn ghost" disabled>Ekspor Kunci Publik</button>
+            <a id="downloadPublicLink" class="hidden" download>Unduh Public Key</a>
+
+
+            <div style="height:8px"></div>
+
+
+            <button id="btnExportPrivate" class="btn ghost" disabled>Unduh Kunci Privat</button>
+            <a id="downloadPrivateLink" class="hidden" download>Unduh Private Key</a>
+        </div>
+    </aside>
+
+
+    <main class="content">
+        <header class="card topcard">
+            <div>
+                <h2>Aplikasi Enkripsi File Hibrida</h2>
+                <div class="muted">
+                    Enkripsi file apa pun; preview akan ditampilkan untuk file gambar.
+                </div>
+            </div>
+        </header>
+
+
+        <section class="card">
+            <h3>1. Pilih File</h3>
+            <input id="fileToEncrypt" type="file" />
+
+
+            <div class="grid-preview">
+                <div>
+                    <label class="small muted">File Asli</label>
+                    <canvas id="canvasOriginal"></canvas>
+                </div>
+                <div>
+                    <label class="small muted">Prapemrosesan</label>
+                    <canvas id="canvasProcessed"></canvas>
+                </div>
+                <div>
+                    <label class="small muted">Ciphertext</label>
+                    <canvas id="canvasCipher"></canvas>
+                </div>
+                <div>
+                    <label class="small muted">Hasil Dekripsi</label>
+                    <canvas id="canvasDecrypted"></canvas>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="card">
+            <h3>2. Enkripsi</h3>
+            <label class="small muted">Passphrase (opsional)</label>
+            <input id="encPassphrase" type="text" placeholder="Opsional: passphrase" />
+
+
+            <div class="controls">
+                <button id="btnEncryptNow" class="btn" disabled>Enkripsi & Buat Paket</button>
+                <a id="downloadEncryptedLink" class="btn ghost hidden" download>Unduh Paket</a>
+            </div>
+        </section>
+
+
+        <section class="card">
+            <h3>3. Dekripsi</h3>
+
+
+            <label class="small muted">Unggah Paket (.bin)</label>
+            <input id="encryptedPackageFile" type="file" accept=".bin" />
+
+
+            <label class="small muted mt8">Unggah / Paste Private Key (PEM)</label>
+            <input id="privateKeyFileInput" type="file" accept=".pem" />
+            <textarea id="privatePemTextarea" placeholder="Paste private key di sini"></textarea>
+
+
+            <label class="small muted mt8">Passphrase (jika diperlukan)</label>
+            <input id="decPassphrase" type="text" placeholder="Passphrase" />
+
+
+            <div class="controls">
+                <button id="btnImportPrivate" class="btn">Impor Kunci Privat</button>
+                <button id="btnDecryptNow" class="btn" disabled>Dekripsi Paket</button>
+            </div>
+        </section>
+
+
+        <section class="card" style="display:flex; gap:18px; align-items:flex-start;">
+            <div style="flex:1;">
+                <h3>Terminal Log</h3>
+                <div id="logArea" class="log">
+                    Sistem siap. Silakan mulai proses enkripsi/dekripsi.
+                </div>
+            </div>
+
+
+            <div style="width:300px;">
+                <h3>Metrik</h3>
+                <div class="metrics">
+                    <div class="small muted">PSNR</div>
+                    <div id="psnrValue" class="metric-value">-</div>
+
+
+                    <div class="small muted mt8">MSE</div>
+                    <div id="mseValue" class="metric-value">-</div>
+
+
+                    <div class="small muted mt8">Ukuran Cipher</div>
+                    <div id="cipherSize" class="metric-value">-</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- JavaScript -->
+    <script type="module" src="webenkrip.js"></script>
+</body>
+
+
+</html>
