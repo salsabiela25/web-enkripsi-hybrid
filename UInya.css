@@ -60,7 +60,8 @@ body {
     margin-top: 18px;
 }
 
-
+.menu-toggle {
+   display: none;
 /* ===============================
    MAIN CONTENT
 =================================*/
@@ -233,15 +234,42 @@ textarea {
    RESPONSIVE
 =================================*/
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 1101;
+        font-size: 24px;
+        background: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+    }
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .content {
+        margin-left: 0px;
+        padding: 16px;
+        width: 100%;
+    }
     .grid-preview {
         grid-template-columns: repeat(2, 1fr);
     }
-    .content {
-        margin-left: 20px;
-        padding: 20px;
-    }
-    .sidebar {
-        display: none;
+    canvas {
+        max-width: 100%;
     }
 }
