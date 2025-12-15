@@ -536,3 +536,14 @@ setInterval(() => {
     if (btnExportPublic) btnExportPublic.disabled = !rsaKeyPair?.publicKey;
     if (btnExportPrivate) btnExportPrivate.disabled = !rsaKeyPair?.privateKey;
 }, 800);
+// ===== Sidebar Toggle (Mobile) =====
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    if (toggle && sidebar) {
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+    }
+});
