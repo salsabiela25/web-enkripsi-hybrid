@@ -61,20 +61,21 @@ body {
 }
 
 .menu-toggle {
-   display: none;
+    display: none;
+}
 /* ===============================
    MAIN CONTENT
 =================================*/
 
 .content {
-    margin-left: 300px;
+    margin-left: 260px;
+    width: calc(100% - 260px);
     padding: 28px;
-    max-width: 1200px;
 }
 
 .card {
     background: var(--card);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 18px;
     border: 1px solid var(--border);
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
@@ -144,7 +145,6 @@ h3 {
 canvas {
     border-radius: 10px;
     width: 100%;
-    max-width: 256px;
     height: auto;
     aspect-ratio: 1/1;
     background: var(--soft);
@@ -168,8 +168,8 @@ input[type=file] {
 }
 
 input[type=password],
-textarea,
-input[type=text] {
+input[type=text],
+textarea {
     width: 100%;
     padding: 8px;
     border-radius: 8px;
@@ -250,12 +250,7 @@ textarea {
         cursor: pointer;
     }
     .sidebar {
-        position: fixed;
         left: -100%;
-        top: 0;
-        width: 260px;
-        height: 100vh;
-        z-index: 1000;
         transition: left 0.3s ease;
     }
     .sidebar.active {
@@ -269,7 +264,14 @@ textarea {
     .grid-preview {
         grid-template-columns: repeat(2, 1fr);
     }
+    .preview-container {
+        grid-template-columns: 1fr;
+    }
     canvas {
         max-width: 100%;
     }
+    main, section {
+       display: block;
+       width: 100%;
+    } 
 }
