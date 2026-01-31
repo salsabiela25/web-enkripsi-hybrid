@@ -7,7 +7,7 @@ const SERVER_IP = "http://192.168.56.20:3000";
    DOM READY
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("✅ webenkrip.js loaded");
+    console.log("webenkrip.js loaded");
 
     /* ================================
        AMBIL ELEMEN DOM
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
        CEK SUPPORT CRYPTO
     ================================ */
     if (!window.crypto || !window.crypto.subtle) {
-        alert("❌ Browser tidak mendukung Web Crypto API!\nJalankan file ini lewat server HTTP/HTTPS (misal localhost).");
+        alert("Browser tidak mendukung Web Crypto API!\nJalankan file ini lewat server HTTP/HTTPS (misal localhost).");
         console.error("crypto.subtle tidak tersedia");
         return;
     }
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedFile = e.target.files[0];
         if (!selectedFile) return;
 
-        log("📂 File dipilih: " + selectedFile.name);
+        log("File dipilih: " + selectedFile.name);
 
         await drawImageToCanvas(selectedFile, canvasOriginal, true);
 
@@ -131,10 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             btnExportPublic.disabled = false;
             btnExportPrivate.disabled = false;
-            log("🔑 RSA-2048 berhasil dibuat");
+            log("RSA-2048 berhasil dibuat");
         } catch (err) {
             console.error(err);
-            alert("❌ Gagal generate RSA key");
+            alert("Gagal generate RSA key");
         }
     });
 
@@ -217,7 +217,7 @@ btnEncryptNow?.addEventListener("click", async () => {
         const cipherImgData = new ImageData(pixels, canvasOriginal.width, canvasOriginal.height);
         cipherCtx.putImageData(cipherImgData, 0, 0);
     } catch (err) {
-        console.warn("⚠️ Tidak dapat tampilkan preview ciphertext:", err);
+        console.warn("Tidak dapat tampilkan preview ciphertext:", err);
     }
 
     // 6. Buat file .bin untuk diunduh
@@ -227,7 +227,7 @@ btnEncryptNow?.addEventListener("click", async () => {
     downloadEncryptedLink.classList.remove("hidden");
 
     cipherSize.innerText = blob.size + " byte";
-    log("🔒 Enkripsi selesai");
+    log("Enkripsi selesai");
 });
 
     /* ================================
@@ -249,10 +249,10 @@ btnEncryptNow?.addEventListener("click", async () => {
             );
 
             btnDecryptNow.disabled = false;
-            log("🔓 Private key berhasil diimpor");
+            log("Private key berhasil diimpor");
         } catch (err) {
             console.error(err);
-            alert("❌ Gagal import private key");
+            alert("Gagal import private key");
         }
     });
 
@@ -305,14 +305,14 @@ btnDecryptNow?.addEventListener("click", async () => {
             decryptedImageData = await drawImageToCanvas(blob, canvasDecrypted);
             hitungPSNR(); // Hanya untuk gambar
         } catch {
-            log("⚠️ File bukan gambar, canvasDecrypted tidak ditampilkan");
+            log("File bukan gambar, canvasDecrypted tidak ditampilkan");
         }
 
-        log("✅ Dekripsi selesai");
+        log("Dekripsi selesai");
     } catch (err) {
         console.error(err);
-        alert("❌ Terjadi kesalahan saat dekripsi!");
-        log("❌ Error dekripsi: " + err.message);
+        alert("Terjadi kesalahan saat dekripsi!");
+        log("Error dekripsi: " + err.message);
     }
 });
 
