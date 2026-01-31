@@ -7,7 +7,7 @@ const SERVER_IP = "http://192.168.56.20:3000";
    DOM READY
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("webenkrip.js loaded");
+    console.log("✅ webenkrip.js loaded");
 
     /* ================================
        AMBIL ELEMEN DOM
@@ -54,12 +54,29 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(msg);
     }
 
-    function bufferToBase64(buffer) {
-        return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+   function bufferToBase64(buffer) {
+    const bytes = new Uint8Array(buffer);
+    let binary = "";
+    const chunkSize = 0x8000; // 32KB per chunk
+
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+        binary += String.fromCharCode.apply(
+            null,
+            bytes.subarray(i, i + chunkSize)
+        );
     }
 
+    return btoa(binary);
+}
     function base64ToBuffer(base64) {
-        return Uint8Array.from(atob(base64), c => c.charCodeAt(0)).buffer;
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+
+        return bytes.buffer;
     }
 
     function drawImageToCanvas(blob, canvas, saveData = false) {
@@ -82,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
        CEK SUPPORT CRYPTO
     ================================ */
     if (!window.crypto || !window.crypto.subtle) {
-        alert("Browser tidak mendukung Web Crypto API!\nJalankan file ini lewat server HTTP/HTTPS (misal localhost).");
+        alert("❌ Browser tidak mendukung Web Crypto API!\nJalankan file ini lewat server HTTP/HTTPS (misal localhost).");
         console.error("crypto.subtle tidak tersedia");
         return;
     }
